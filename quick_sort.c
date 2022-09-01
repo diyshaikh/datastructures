@@ -34,7 +34,7 @@ int main(){
        scanf("%d",&number[i]);
     }
    quicksort(number,0,count-1);
-   printf("Order of Sorted elements: ");
+   // printf("Order of Sorted elements: ");
    for(i=0;i<count;i++){
        printf(" %d",number[i]);
    }
