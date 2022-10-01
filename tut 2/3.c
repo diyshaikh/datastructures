@@ -65,11 +65,11 @@ struct sll addd(struct sll a,struct sll b){
 int main() {
     struct sll a,b,c;
     int x,y,i;
-    printf("enter the highest power of x ");
+    printf("Enter the highest power of x ");
     scanf("%d",&y);
-    printf("enter polynomial a\n");
+    printf("Enter polynomial a\n");
     i = y;
-    printf("enter coeffecient of x ^ %d ",i);
+    printf("Enter coeffecient of x ^ %d ",i);
     scanf("%d",&x);
     a=create(a,x,i);
     i--;
@@ -80,9 +80,9 @@ int main() {
         i--;
     }
     display(a);
-    printf("enter polynomial b\n");
+    printf("Enter polynomial b\n");
     i = y;
-    printf("enter coeffecient of x ^ %d ",i);
+    printf("Enter coeffecient of x ^ %d ",i);
     scanf("%d",&x);
     b = create(b,x,i);
     i--;
@@ -94,7 +94,8 @@ int main() {
     }
 
     c = addd(a,b);
-    printf("sum of \n");
+    printf("Sum of \n");
+    printf("    ");
     display(a);
     printf("and ");
     display(b);

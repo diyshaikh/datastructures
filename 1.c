@@ -33,9 +33,9 @@ int main ()
     students_array[0].roll_num = 1;
     students_array[1].roll_num = 2;
     students_array[2].roll_num = 3;
-    students_array[0].marks = 2;
-    students_array[1].marks = 4;
-    students_array[2].marks = 6;
+    students_array[0].marks = 5;
+    students_array[1].marks = 7;
+    students_array[2].marks = 7;
     strcpy( students_array[1].name, "a Programming");
     strcpy( students_array[2].name, "b Programming");
      strcpy( students_array[2].name, "C Programming");
