@@ -82,4 +82,5 @@ void display(struct student * arr, int size) {
 
     printf("Sorted array:\n");
     display(arr, n);
+    display(arr, n);
   }
