@@ -97,17 +97,17 @@ void InfixtoPrefix(char Infix[], char Prefix[])
          Postfix[j++]=pop(&s);
     }
     Postfix[j]="\0";
-    printf("%s",Postfix);
+    // printf("%s",Postfix);
     i = 0;
     j-=2;
     while (j>=0){
         Prefix[i] = Postfix[j];
-        printf("%c %d %d",Postfix[j],i,j);
+        // printf("%c %d %d",Postfix[j],i,j);
         j--;
         i++;
     }
     Prefix[i]="\0";
-    printf("%s",Prefix);
+    // printf("%s",Prefix);
 
 }
 int main()
