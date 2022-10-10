@@ -98,13 +98,13 @@ front_pos++;
 int main()
 {
 int choice,item;
-do
-{
 printf("\n1.Insert\n");
 printf("\n2.Delete\n");
 printf("\n3.Display\n");
 printf("\n4.reverse\n");
 printf("\n5.quit\n");
+do
+{
 printf("Enter your choice : ");
 scanf("%d",&choice);
 switch(choice)
