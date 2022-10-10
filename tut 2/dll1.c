@@ -39,7 +39,6 @@ void display(struct dll a){
 }
 int main() {
     struct dll a;
-    a.next = a.previous = NULL
   a = create(a,10);
   a = insert_last(a,15);
   a = insert_last(a,25);
