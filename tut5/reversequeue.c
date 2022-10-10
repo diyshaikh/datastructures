@@ -47,10 +47,10 @@ int deletion()
 if(front == -1)
 {
 printf("Queue Underflown");
-return ;
+return -1;
 }
 int a = cqueue_arr[front];
-printf("Element deleted from queue is : %dn",cqueue_arr[front]);
+// printf("Element deleted from queue is : %dn",cqueue_arr[front]);
 if(front == rear)
 {
 front = -1;
@@ -115,7 +115,7 @@ scanf("%d", &item);
 insert(item);
 break;
 case 2 :
-deletion();
+    printf("%d",deletion());
 break;
 case 3:
 display();
