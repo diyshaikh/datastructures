@@ -6,6 +6,18 @@
     char * data;
     struct node * next;
 }* stack= NULL;
+void chrpcpy(char f[],char s[]){
+    int i= 0,j=0;
+    while (f[i]!="\n"){
+        i++;
+    }
+    while (s[j]!="\n"){
+        f[i+j]= s[i];
+        j++;
+    }
+    f[i+j]='\n';
+    printf("%s", f);
+}
 char* pop(){
     struct node *next = stack->next;
     char * c = stack->data;
@@ -31,40 +43,44 @@ void display(){
 }
 void prefixtoinfix(char Infix[], char Prefix[])
 {
-    struct stack s;
+
     int i, j;
-    char* e, x;
+    char e;
+
+    char * l,p,q,bo="(",bc=")";
+    printf("1");
 
     i = 0, j = 0;
-    e = Infix[i];
-    while (e != '\0')
-    {
-        if (e == '(')
-            push(&s,e);
-        else if (isdigit(e) || isalpha(e))
+    printf("%s",Infix);
+    while (Infix[i] != '\0'){
+        i++;
+        printf("%d",i);
+    }
+    printf("2");
+    i--;
+    e = Prefix[i];
+    while (i>=0){
+        printf("%c", e);
+        if (isdigit(e) || isalpha(e))
         {
-            Postfix[j++] = e;
+            push(e);
+        }else{
+            p = pop();
+            q = pop();
+            chrpcpy(l,bo);
+            chrpcpy(l,p);
+            chrpcpy(l,e);
+            chrpcpy(l,q);
+            chrpcpy(l,bc);
+            // l = "("+ p + e + q + ")";
+            push(l);
+            printf("%s", bo);
+            l = NULL;
         }
 
-        else if (e == ')')
-        {
-            x = pop(&s);
-            while (x != '(')
-            {
-                Postfix[j++] = x;
-                x = pop(&s);
-            }
-        }else{
-            x = pop(&s);
-            while (prec(x) >= prec(e))
-            {
-                Postfix[j++] = x;
-                x = pop(&s);
-            }
-            push(&s,x);
-            push(&s,e);
-        }
-        e = Infix[++i];
+        e = Prefix[i++];
+
+
     }
 
 }
