@@ -3,18 +3,17 @@
 int queue[max];
 int front=-1;
 int rear=-1;
-
 void enqueue(int element){
     if(front==-1 && rear==-1){
         front=0;
         rear=0;
         queue[rear]=element;
     }
-    else if((rear+1)==max){
+    else if((rear+1)%max==front){
         printf("Queue is overflow..");
     }
     else{
-        rear=rear+1;
+        rear=(rear+1)%max;
         queue[rear]=element;
     }
 }
@@ -31,12 +30,11 @@ int dequeue(){
 }
 else{
     int r = queue[front];
-    front=front+1;
+    front=(front+1)%max;
     return r;
 }
 return 0;
 }
-
 void display(){
     int i=front;
     if(front==-1 && rear==-1){
@@ -44,7 +42,8 @@ void display(){
     }
     else{
         printf("\nElements in a Queue are :");
-        while(i<=rear){
+        while(i<=rear)
+        {
             printf("%d,", queue[i]);
             i=(i+1)%max;
         }
