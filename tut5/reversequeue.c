@@ -127,9 +127,9 @@ case 4:
     while(stack != NULL){
         pop();
     }
-break;
+    break;
 default:
-printf("Wrong choice\n");
+    printf("Wrong choice\n");
 }
 }while(choice!=5);
 return 0;
