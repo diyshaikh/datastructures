@@ -49,10 +49,10 @@ void display(int queue[],int rear,int front){
 // enqueue(queue,front,rear,x);
 // printf("the element dequed is %d \n",dequeue(queue,front,rear));
 int main(){
-    int choice=1,queue1[max],queue2[max],front1=-1,rear1=-1,front2=-1,rear2=-1,timeentery[24]= {0,0,0,3,3,3,6,6,6,9,9,9,12,12,12,15,15,15,18,18,18,21,21,21},timeexit[24], time=0,timechange=3,indexl[max], indext[max],a=0,b=0,tnext=0,t=0,n,i=0,x=0,y=0;
-    char enteries[] = "lttllttlltltlttlltlllttt";
+    int queue1[max],queue2[max],front1=-1,rear1=-1,front2=-1,rear2=-1,timeentery[24]= {0,0,0,3,3,3,6,6,6,9,9,9,12,12,12,15,15,15,18,18,18,21,21,21},timeexit[24], time=0,timechange=3,indexl[max], indext[max],a=0,b=0,tnext=0,t=0,n,i=0,x=0,y=0,totalWaitTime=0,countLandedFlights=0,countTakeOffFlights=0;
+    char enteries[] = "lttllttlltltlttlltlllttt",l[]="lt";
     while (i < 24){
-        if (enteries[i]=="l"){
+        if (enteries[i]==l[0]){
             indexl[x]=i;
             x++;
         }else{
@@ -61,10 +61,12 @@ int main(){
         }
         i++;
     }
-    i=x=y=0;
+    i=0;
+    x=0;
+    y=0;
     while (time<=24){
-        while(timeentery[i]>=time){ //adding to queue
-            if(enteries[i]=="l"){
+        while(timeentery[i]<=time){ //adding to queue
+            if(enteries[i]==l[0]){
                 enqueue(queue1,front1,rear1,x);
                 x++;i++;
             }else{
@@ -77,18 +79,24 @@ int main(){
                 if(front1!=rear1){
                     n = dequeue(queue1,front1,rear1);
                     timeexit[indexl[n]]=time+timechange;
-                    printf("the plane landing is L%d  arrived on\n",n,timeentery[indexl[n]]*5);
+                    totalWaitTime+=(timeexit[indexl[n]]-timeentery[indexl[n]])*5;
+                    printf("At time t = %d, In Runway %d, plane with plane ID: %d  is landing after waiting %d minutes\n",time,t+1,n,totalWaitTime);
                     t+=1;
+                    countLandedFlights+=1;
                 }else{
                     n = dequeue(queue2,front2,rear2);
                     timeexit[indext[n]]=time+timechange;
-                    printf("the plane taking off is T%d  arrived on\n",n,timeentery[indext[n]]*5);
-                    t+=1;
+                    totalWaitTime+=(timeexit[indext[n]]-timeentery[indext[n]])*5;
+                    printf("At time t = %d, In Runway %d, plane with plane ID: %d is taking off after waiting %d minutes\n",time,t+1,n,totalWaitTime);
+                    t+=1;countTakeOffFlights+=1;
                 }
             }
             tnext+=timechange;
         }
         time+=1;
     }
+    printf("\nTotal Wait Time = %d\n",totalWaitTime);
+    printf("\nNumber Of flights landed = %d",countLandedFlights);
+    printf("\nNumber of Flights taken off = %d",countTakeOffFlights);
     return 0;
 }
