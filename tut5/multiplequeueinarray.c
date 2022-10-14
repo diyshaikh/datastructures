@@ -1,55 +1,4 @@
 #include <stdio.h>
-/*
-struct quelist{
-    int que[],front[],rear[];
-}
-void enqueue(int element){
-    if(front==-1 && rear==-1){
-        front=0;
-        rear=0;
-        queue[rear]=element;
-    }
-    else if((rear+1)==max){
-        printf("Queue is overflow..");
-    }
-    else{
-        rear=rear+1;
-        queue[rear]=element;
-    }
-}
-
-int dequeue(){
-    if((front==-1) && (rear==-1)){
-        printf("\nQueue is underflow..");
-    }
- else if(front==rear){
-    int r = queue[front];
-    front=-1;
-    rear=-1;
-    return r;
-}
-else{
-    int r = queue[front];
-    front=front+1;
-    return r;
-}
-return 0;
-}
-
-void display(){
-    int i=front;
-    if(front==-1 && rear==-1){
-        printf("\n Queue is empty..");
-    }
-    else{
-        printf("\nElements in a Queue are :");
-        while(i<=rear){
-            printf("%d,", queue[i]);
-            i=(i+1)%max;
-        }
-    }
-}
-*/
 int power(int base,int exponent){
     int i = 0,res=1;
     while (i <=exponent){
@@ -82,7 +31,7 @@ void enqueue(int x,int y,int queue[],int front[],int rear[],int n,int m){
         // }
         rear[x]=front[x];
         queue[front[x]]= y;
-        front[x] = front[x] +power(-1,x);
+        front[x] = front[x] -power(-1,x);
     }
     else if(front[x]==front[rpair(x,m)] &&x!=rpair(x,m)){
         printf("overflow");
@@ -90,7 +39,7 @@ void enqueue(int x,int y,int queue[],int front[],int rear[],int n,int m){
         printf("overflow");
     }else{
         queue[front[x]]= y;
-        front[x] = front[x] +(-1^(x%2));
+        front[x] = front[x] -power(-1,x);
     }
 }
 int dequeue(int x,int queue[],int front[],int rear[],int n,int m){
@@ -100,7 +49,7 @@ int dequeue(int x,int queue[],int front[],int rear[],int n,int m){
         return(-3003);
     }else {
         d = queue[rear[x]];
-        if(rear[x]== front[x]){
+        if(power((rear[x]-front[x]),2)==1){
             rear[x] = front[x]=-1;
         }else{
             rear[x]= rear[x]+power(-1,x+1);
@@ -121,6 +70,8 @@ int main(){
     scanf("%d", &n);
     printf("Enter number of queues - ");
     scanf("%d", &m);
+    m--;
+    n--;
     int queue[n],front[m],rear[m];
     innit(front,rear,m);
     // queue[0]=5;
@@ -132,9 +83,9 @@ int main(){
     printf("\n Press 2: Delete ");
     printf("\n Press 3: Display");
     while(choice<4 && choice!=0){
+        print(m,front);
         print(n,queue);
         print(m,rear);
-        print(m,front);
         printf("Enter your choice - ");
         scanf("%d", &choice);
         switch(choice){
