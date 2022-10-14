@@ -7,6 +7,9 @@ int power(int base,int exponent){
     }
     return res;
 }
+int initpos(int x,int n ,int m){
+    return(((x%2)+(x/2))*((n+1)/(m+1))*2)-(x%2);
+}
 int rpair(int x,int m){
     if (x == m & x%2 ==0){
         return x;
@@ -16,26 +19,24 @@ int rpair(int x,int m){
         return x-1;
     }
 }
-void innit(int front[],int rear[],int m){
+void innit(int front[],int rear[],int m,int n){
     int x = 0;
     while (x <= m){
-        front[x]= rear[x]= -1;
+        front[x] = initpos(x,n,m);
+        rear[x]= -1;
         x++;
     }
 }
 void enqueue(int x,int y,int queue[],int front[],int rear[],int n,int m){
-    if (front[x]==-1){
-        front[x] = (((x%2)+(x/2))*(n/m)*2)-(x%2);
-        // if(x%2 ==1){
-        //     front[x]-=1;
-        // }
+    if (rear[x]==-1){
+        front[x] = initpos(x,n,m);
         rear[x]=front[x];
         queue[front[x]]= y;
         front[x] = front[x] -power(-1,x);
     }
     else if(front[x]==front[rpair(x,m)] &&x!=rpair(x,m)){
         printf("overflow");
-    }else if(x==rpair(x,m) && front[x]>m){
+    }else if(x==rpair(x,m) && front[x]>=m){
         printf("overflow");
     }else{
         queue[front[x]]= y;
@@ -49,12 +50,15 @@ int dequeue(int x,int queue[],int front[],int rear[],int n,int m){
         return(-3003);
     }else {
         d = queue[rear[x]];
-        if(power((rear[x]-front[x]),2)==1){
-            rear[x] = front[x]=-1;
+        printf("%d",d);
+        if(rear[x]- front[x]==1 ||front[x]-rear[x]==1){
+            rear[x] = -1;
+            front[x]=initpos(x,n,m);
         }else{
             rear[x]= rear[x]+power(-1,x+1);
         }
     }
+    return d;
 }
 void print(int n ,int array[]){
     int i = 0;
@@ -73,19 +77,11 @@ int main(){
     m--;
     n--;
     int queue[n],front[m],rear[m];
-    innit(front,rear,m);
-    // queue[0]=5;
-    // queue[1]=6;
-    // queue[2]=7;
-    // front[0]=3;
-    // rear[0]=0;
+    innit(front,rear,m,n);
     printf("\n Press 1: Insert ");
     printf("\n Press 2: Delete ");
     printf("\n Press 3: Display");
     while(choice<4 && choice!=0){
-        print(m,front);
-        print(n,queue);
-        print(m,rear);
         printf("Enter your choice - ");
         scanf("%d", &choice);
         switch(choice){
