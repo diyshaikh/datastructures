@@ -62,4 +62,5 @@ int main() {
     struct  node * head;
     head = createtree();
     displaypreorder(head);
+    displaypostorder()
 }
