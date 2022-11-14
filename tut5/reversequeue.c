@@ -50,7 +50,7 @@ printf("Queue Underflown");
 return -1;
 }
 int a = cqueue_arr[front];
-// printf("Element deleted from queue is : %dn",cqueue_arr[front]);
+// printf("Element deleted from queue is : %dn",cqueue_arr[front]); test
 if(front == rear)
 {
 front = -1;
