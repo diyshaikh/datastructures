@@ -18,8 +18,8 @@ int main(){
   printf("\nWELCOME TO FIR DATABASE \n");
   printf("1. Register a FIR\n");
   printf("2. Display all FIR information\n");
-  // printf("3. List all FIR of given Aadhar_number\n");
-  // printf("4. List the count of FIR's in the FIR\n");
+  printf("3. List all FIR of given Aadhar_number\n");
+  printf("4. List the count of FIR's in the FIR\n");
   printf("5. Exit\n");
 
  while (input != 5) {
