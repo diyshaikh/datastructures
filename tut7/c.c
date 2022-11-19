@@ -227,6 +227,7 @@ int main() {
 
         case 4:
             printf("\nMirror Image: \n");
+ 		print_tree_level_order(Root);
             mirrorimage(Root);
             printf("\n");
             break;
